@@ -1,0 +1,7 @@
+.image-popup__place-name {
+  margin: 10px 0 0;
+  position: absolute;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}

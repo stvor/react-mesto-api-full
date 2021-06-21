@@ -1,0 +1,5 @@
+.header__user-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+}

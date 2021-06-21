@@ -1,0 +1,13 @@
+.profile__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__wrapper {
+    justify-content: center;
+    gap: 10px;
+    padding-left: 28px;
+  }
+}
