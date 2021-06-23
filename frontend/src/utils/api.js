@@ -2,7 +2,7 @@ class Api {
   constructor({ url }) {
     this.url = url;
     this._headers = {
-      authorization: '6320c87e-58cc-431b-b75b-473d8cbd6c68'
+      authorization: `Bearer ${localStorage.getItem('jwt')}`
     };
   }
 
@@ -111,8 +111,13 @@ class Api {
   }
 }
 
+// const api = new Api({
+//   url: 'https://mesto.nomoreparties.co/v1/cohort-21',
+// });
+
 const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  url: 'http://localhost:3000',
+  // authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGQyNWJiNzYwOWM4YzU3ZjFjYTcwZjAiLCJpYXQiOjE2MjQ0NDk3MTAsImV4cCI6MTYyNTA1NDUxMH0.HYR0om6Y9y-_argH7VZs4yYl1lrxvzAEtJcKBFvrcYU',
 });
 
 export default api;
