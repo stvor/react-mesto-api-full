@@ -1,7 +1,9 @@
 class Api {
-  constructor({ url, authorization }) {
+  constructor({ url }) {
     this.url = url;
-    this.authorization = authorization;
+    this._headers = {
+      authorization: '6320c87e-58cc-431b-b75b-473d8cbd6c68'
+    };
   }
 
   _processingResponse(res) {
@@ -15,7 +17,7 @@ class Api {
   getUser() {
     return fetch(`${this.url}/users/me`, {
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
       },
     })
       .then(res => this._processingResponse(res));
@@ -24,7 +26,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this.url}/cards`, {
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
       },
     })
     .then(res => this._processingResponse(res));
@@ -34,7 +36,7 @@ class Api {
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -49,7 +51,7 @@ class Api {
     return fetch(`${this.url}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -64,7 +66,7 @@ class Api {
     return fetch(`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
       },
     })
     .then(res => this._processingResponse(res));
@@ -74,7 +76,7 @@ class Api {
     return fetch(`${this.url}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
       },
     })
     .then(res => this._processingResponse(res));
@@ -84,7 +86,7 @@ class Api {
     return fetch(`${this.url}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
       },
     })
     .then(res => this._processingResponse(res));
@@ -94,7 +96,7 @@ class Api {
     return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this.authorization,
+        authorization: this._headers.authorization,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -111,7 +113,6 @@ class Api {
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-21',
-  authorization: '6320c87e-58cc-431b-b75b-473d8cbd6c68',
 });
 
 export default api;
