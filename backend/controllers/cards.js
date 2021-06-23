@@ -5,8 +5,8 @@ const NotFoundError = require('../errors/not-found-err');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .populate('owner')
-    .then((cards) => res.status(200).send({ data: cards }))
+    .populate(['owner', 'likes'])
+    .then((cards) => res.status(200).send(cards))
     .catch(next);
 };
 
@@ -14,7 +14,7 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(200).send({ data: card }))
+    .then((card) => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') throw new IncorrectDataError('Переданы некорректные данные при создании карточки');
 
@@ -29,7 +29,7 @@ module.exports.deleteCard = (req, res, next) => {
     .then((card) => {
       if (req.user._id.toString() === card.owner.toString()) {
         Card.findByIdAndRemove(req.params.cardId)
-          .then(() => res.status(200).send({ data: card }));
+          .then(() => res.status(200).send(card));
       } else {
         next(new NoRightsError('Нельзя удалять чужие карточки'));
       }
@@ -50,8 +50,9 @@ module.exports.likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .orFail(new Error('PageNotFound'))
-    .then((card) => res.status(200).send({ data: card }))
+    .then((card) => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'CastError') throw new IncorrectDataError('Некорректный формат _id карточки');
 
@@ -68,8 +69,9 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .orFail(new Error('PageNotFound'))
-    .then((card) => res.status(200).send({ data: card }))
+    .then((card) => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'CastError') throw new IncorrectDataError('Некорректный формат _id карточки');
 
