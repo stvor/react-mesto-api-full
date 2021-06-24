@@ -5,6 +5,8 @@ const IncorrectDataError = require('../errors/incorrect-data-err');
 const NotFoundError = require('../errors/not-found-err');
 const RegistrationError = require('../errors/registration-err');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
@@ -92,7 +94,11 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'key', { expiresIn: '7d' });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'key',
+        { expiresIn: '7d' },
+      );
 
       res.status(200).send({ token });
     })
