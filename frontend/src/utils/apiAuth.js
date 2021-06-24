@@ -47,7 +47,8 @@ class ApiAuth {
 
 const apiAuth = new ApiAuth({
   // url: 'https://auth.nomoreparties.co',
-  url: 'http://localhost:3000',
+  // url: 'http://localhost:3000',
+  url: 'http://api.belib.nomoredomains.monster',
 });
 
 export default apiAuth;
