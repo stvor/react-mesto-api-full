@@ -116,7 +116,8 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    if (card.owner._id === currentUser._id) {
+    console.log(card.owner);
+    if (card.owner === currentUser._id) {
       api.deleteCard(card._id)
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card._id));
