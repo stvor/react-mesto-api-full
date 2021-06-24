@@ -111,14 +111,8 @@ class Api {
   }
 }
 
-// const api = new Api({
-//   url: 'https://mesto.nomoreparties.co/v1/cohort-21',
-// });
-
 const api = new Api({
   url: 'http://api.belib.nomoredomains.monster',
-  // url: 'http://localhost:3000',
-  // authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGQyNWJiNzYwOWM4YzU3ZjFjYTcwZjAiLCJpYXQiOjE2MjQ0NDk3MTAsImV4cCI6MTYyNTA1NDUxMH0.HYR0om6Y9y-_argH7VZs4yYl1lrxvzAEtJcKBFvrcYU',
 });
 
 export default api;
