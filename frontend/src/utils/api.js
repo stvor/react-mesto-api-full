@@ -73,7 +73,7 @@ class Api {
   }
 
   sendLike(cardId) {
-    return fetch(`${this.url}/cards/likes/${cardId}`, {
+    return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         authorization: this._headers.authorization,
@@ -83,7 +83,7 @@ class Api {
   }
 
   sendUnlike(cardId) {
-    return fetch(`${this.url}/cards/likes/${cardId}`, {
+    return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: this._headers.authorization,
