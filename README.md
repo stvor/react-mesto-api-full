@@ -6,6 +6,7 @@ https://belib.nomoredomains.monster
 ## Технологии
 1. React.js
 1. Express.js
+1. MongoDB
 1. БЭМ в вёрстке
 1. Адаптивная вёрстка под мобильные устройства
 
