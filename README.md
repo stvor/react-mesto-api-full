@@ -11,3 +11,37 @@ https://belib.nomoredomains.monster
 1. Адаптивная вёрстка под мобильные устройства
 
 Приложение работает на виртуальной машине Яндекс.Облака. 
+
+## Запуск
+### Бэкенд
+1. Установить MongoDB. Инструкция: https://docs.mongodb.com/manual/administration/install-community/
+2. Запустить сервер MongoDB
+```
+mongod
+```
+3. Перейти в папку `backend`
+```
+cd backend
+```
+4. Установить зависимости
+```
+npm install
+```
+5. Запустить приложение
+```
+npm start
+```
+
+### Фронтенд
+1. Перейти в папку `frontend`
+```
+cd frontend
+```
+2. Установить зависимости
+```
+npm install
+```
+3. Запустить приложение
+```
+npm start
+```
