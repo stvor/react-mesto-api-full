@@ -1,9 +1,6 @@
 class Api {
   constructor({ url }) {
     this.url = url;
-    this._headers = {
-      authorization: `Bearer ${localStorage.getItem('jwt')}`
-    };
   }
 
   _processingResponse(res) {
@@ -17,7 +14,6 @@ class Api {
   getUser(jwt) {
     return fetch(`${this.url}/users/me`, {
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
       },
     })
@@ -27,7 +23,6 @@ class Api {
   getInitialCards(jwt) {
     return fetch(`${this.url}/cards`, {
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
       },
     })
@@ -38,7 +33,6 @@ class Api {
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
@@ -54,7 +48,6 @@ class Api {
     return fetch(`${this.url}/cards`, {
       method: 'POST',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
@@ -70,7 +63,6 @@ class Api {
     return fetch(`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
       },
     })
@@ -81,7 +73,6 @@ class Api {
     return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
       },
     })
@@ -92,7 +83,6 @@ class Api {
     return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
       },
     })
@@ -103,7 +93,6 @@ class Api {
     return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        // authorization: this._headers.authorization,
         "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
@@ -120,8 +109,7 @@ class Api {
 }
 
 const api = new Api({
-  // url: 'http://api.belib.nomoredomains.monster',
-  url: 'http://localhost:3000',
+  url: 'http://api.belib.nomoredomains.monster',
 });
 
 export default api;
