@@ -14,29 +14,32 @@ class Api {
     return Promise.reject(new Error(`Ошибка, код ${res.status}`))
   }
 
-  getUser() {
+  getUser(jwt) {
     return fetch(`${this.url}/users/me`, {
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
       },
     })
       .then(res => this._processingResponse(res));
   }
 
-  getInitialCards() {
+  getInitialCards(jwt) {
     return fetch(`${this.url}/cards`, {
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
       },
     })
     .then(res => this._processingResponse(res));
   }
 
-  setUser(userData) {
+  setUser(userData, jwt) {
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -47,11 +50,12 @@ class Api {
     .then(res => this._processingResponse(res));
   }
 
-  addCard(cardData) {
+  addCard(cardData, jwt) {
     return fetch(`${this.url}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -62,41 +66,45 @@ class Api {
     .then(res => this._processingResponse(res));
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, jwt) {
     return fetch(`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
       },
     })
     .then(res => this._processingResponse(res));
   }
 
-  sendLike(cardId) {
+  sendLike(cardId, jwt) {
     return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
       },
     })
     .then(res => this._processingResponse(res));
   }
 
-  sendUnlike(cardId) {
+  sendUnlike(cardId, jwt) {
     return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
       },
     })
     .then(res => this._processingResponse(res));
   }
 
-  setAvatar(avatarLink) {
+  setAvatar(avatarLink, jwt) {
     return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._headers.authorization,
+        // authorization: this._headers.authorization,
+        "Authorization" : `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -112,7 +120,8 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://api.belib.nomoredomains.monster',
+  // url: 'http://api.belib.nomoredomains.monster',
+  url: 'http://localhost:3000',
 });
 
 export default api;

@@ -63,7 +63,9 @@ function App() {
   }
   
   function handleUpdateUser(userData) {
-    api.setUser(userData)
+    const jwt = localStorage.getItem('jwt');
+
+    api.setUser(userData, jwt)
       .then((newUserData) => {
         setCurrentUser(newUserData);
         closeAllPopups();
@@ -74,7 +76,9 @@ function App() {
   }
 
   function handleUpdateAvatar({avatar}) {
-    api.setAvatar(avatar)
+    const jwt = localStorage.getItem('jwt');
+
+    api.setAvatar(avatar, jwt)
       .then((newUserData) => {
         setCurrentUser(newUserData);
         closeAllPopups();
@@ -95,9 +99,10 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const jwt = localStorage.getItem('jwt');
 
     if (!isLiked) {
-      api.sendLike(card._id)
+      api.sendLike(card._id, jwt)
         .then((newCard) => {
           setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
         })
@@ -105,7 +110,7 @@ function App() {
           console.log(err)
         })
     } else {
-      api.sendUnlike(card._id)
+      api.sendUnlike(card._id, jwt)
         .then((newCard) => {
           setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
         })
@@ -116,9 +121,11 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    console.log(card.owner);
+    
     if (card.owner === currentUser._id) {
-      api.deleteCard(card._id)
+      const jwt = localStorage.getItem('jwt');
+
+      api.deleteCard(card._id, jwt)
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card._id));
       })
@@ -129,7 +136,9 @@ function App() {
   }
 
   function handleAddPlaceSubmit(cardData) {
-    api.addCard(cardData)
+    const jwt = localStorage.getItem('jwt');
+
+    api.addCard(cardData, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -173,15 +182,19 @@ function App() {
   }
 
   React.useEffect(() => {
-    Promise.all([api.getUser(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
+    if (loggedIn) {
+      const jwt = localStorage.getItem('jwt');
+
+      Promise.all([api.getUser(jwt), api.getInitialCards(jwt)])
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData);
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
     tokenCheck();
