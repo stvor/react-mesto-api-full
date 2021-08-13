@@ -46,7 +46,7 @@ class ApiAuth {
 }
 
 const apiAuth = new ApiAuth({
-  url: 'http://api.belib.nomoredomains.monster',
+  url: 'https://api.belib.nomoredomains.monster',
 });
 
 export default apiAuth;
