@@ -5,6 +5,7 @@
   line-height: 22px;
   color: #FFFFFF;
   text-decoration: none;
+  transition: 0.4s;
 }
 
 .header__link:hover {

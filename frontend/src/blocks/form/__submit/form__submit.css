@@ -9,6 +9,7 @@
   font-size: 18px;
   line-height: 22px;
   color: #FFFFFF;
+  transition: 0.4s;
 }
 
 .form__submit:hover {

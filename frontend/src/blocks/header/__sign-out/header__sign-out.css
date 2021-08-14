@@ -7,6 +7,7 @@
   font-size: 18px;
   line-height: 22px;
   color: #A9A9A9;
+  transition: 0.4s;
 }
 
 .header__sign-out:hover {

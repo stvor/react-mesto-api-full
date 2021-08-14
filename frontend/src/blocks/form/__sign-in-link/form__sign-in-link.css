@@ -1,6 +1,7 @@
 .form__sign-in-link {
   text-decoration: none;
   color: #FFFFFF;
+  transition: 0.4s;
 }
 
 .form__sign-in-link:hover {

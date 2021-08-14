@@ -11,6 +11,7 @@
   height: 40px;
   padding: 0;
   transform: rotate(-45deg);
+  transition: 0.4s;
 }
 
 .popup__close:hover {

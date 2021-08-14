@@ -8,6 +8,7 @@
   height: 24px;
   background-color: transparent;
   flex-shrink: 0;
+  transition: 0.4s;
 }
 
 .profile__edit-button:hover {
