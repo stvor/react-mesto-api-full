@@ -3,8 +3,12 @@ import fail from '../images/fail-icon.svg';
 
 
 function InfoTooltip(props) {
+  const infoTooltipClassName = `popup popup_type_tooltip ${
+    props.isOpen && "popup_open"
+  }`;
+
   return (
-    <div className={`popup popup_type_tooltip ${props.isOpen ? "popup_open" : ""}`}>
+    <div className={infoTooltipClassName}>
       <div className="popup__container">
         <button
           className="popup__close"

@@ -1,6 +1,10 @@
 function ImagePopup(props) {
+  const imagePopupClassName = `popup popup_type_image-popup image-popup ${
+    props.card && "popup_open"
+  }`;
+
   return (
-    <div className={`popup popup_type_image-popup image-popup ${props.card ? "popup_open" : ""}`}>
+    <div className={imagePopupClassName}>
       <div className="image-popup__container">
         <button
           className="popup__close image-popup__close"
