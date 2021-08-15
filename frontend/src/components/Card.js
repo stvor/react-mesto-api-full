@@ -26,12 +26,23 @@ function Card(props) {
 
   return (
     <li className="cards-grid__list-item">
-      <img className="cards-grid__image" src={props.card.link} alt={props.card.name} onClick={handleClick} />
-      <button className={cardDeleteButtonClassName} onClick={handleDeleteClick}></button>
+      <img
+        className="cards-grid__image"
+        src={props.card.link} alt={props.card.name}
+        onClick={handleClick}
+      />
+      <button
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
+      ></button>
       <div className="cards-grid__heading-wrap">
         <h2 className="cards-grid__heading">{props.card.name}</h2>
         <div className="cards-grid__like-wrap">
-          <button className={cardLikeButtonClassName} type="button" onClick={handleLikeClick}></button>
+          <button
+            className={cardLikeButtonClassName}
+            type="button"
+            onClick={handleLikeClick}
+          ></button>
           <span className="cards-grid__likes-count">{props.card.likes.length}</span>
         </div>
       </div>

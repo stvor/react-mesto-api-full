@@ -205,7 +205,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
-          <Header email={email} loggedIn={loggedIn} onSignOut={handleSignOut} />
+          <Header
+            email={email}
+            loggedIn={loggedIn}
+            onSignOut={handleSignOut}
+          />
           <Switch>
             <Route path="/sign-up">
               <Register 
@@ -237,15 +241,34 @@ function App() {
           <Footer />
         </div>
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+        />
 
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+        />
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
-        <PopupWithForm name="delete-submit" title="Вы уверены?" onClose={closeAllPopups} />
+        <PopupWithForm
+          name="delete-submit"
+          title="Вы уверены?"
+          onClose={closeAllPopups}
+        />
 
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}
+        />
 
       </div>
     </CurrentUserContext.Provider>

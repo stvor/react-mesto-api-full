@@ -9,15 +9,28 @@ function Main(props) {
     <main className="content page__content">
 
     <section className="content__profile profile">
-      <button className="profile__avatar" onClick={props.onEditAvatar} alt="Изображение пользователя" style={{ backgroundImage: `url(${currentUser.avatar})` }} ></button>
+      <button
+        className="profile__avatar"
+        onClick={props.onEditAvatar}
+        alt="Изображение пользователя"
+        style={{ backgroundImage: `url(${currentUser.avatar})` }}
+      ></button>
       <div className="profile__info">
         <div className="profile__wrapper">
           <h1 className="profile__name">{currentUser.name}</h1>
-          <button className="profile__edit-button" onClick={props.onEditProfile} type="button"></button>
+          <button
+            className="profile__edit-button"
+            onClick={props.onEditProfile}
+            type="button"
+          ></button>
         </div>
         <p className="profile__profession">{currentUser.about}</p>
       </div>
-      <button className="profile__add-button" onClick={props.onAddPlace} type="button"></button>
+      <button
+        className="profile__add-button"
+        onClick={props.onAddPlace}
+        type="button"
+      ></button>
     </section>
 
     <section className="cards-grid">

@@ -6,7 +6,11 @@ function InfoTooltip(props) {
   return (
     <div className={`popup popup_type_tooltip ${props.isOpen ? "popup_open" : ""}`}>
       <div className="popup__container">
-        <button className="popup__close" type="button" onClick={props.onClose}></button>
+        <button
+          className="popup__close"
+          type="button"
+          onClick={props.onClose}
+        ></button>
         <div className="popup__feedback-wrapper">
           {props.isRegisterSuccess ? (
             <>
