@@ -230,9 +230,9 @@ function App() {
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
-              onCardClick={(card) => handleCardClick(card)}
-              onCardLike={(card) => handleCardLike(card)}
-              onCardDelete={(card) => handleCardDelete(card)}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
             />
             <Route>
               {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" /> }
