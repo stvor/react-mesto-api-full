@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import InfoTooltip from './InfoTooltip';
 
-function Register(props) {
+function Register({
+  onRegister,
+  isOpen,
+  isRegisterSuccess,
+  onClose
+}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -17,7 +22,7 @@ function Register(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    props.onRegister({
+    onRegister({
       email,
       password,
     });
@@ -62,9 +67,9 @@ function Register(props) {
         </form>
         
         <InfoTooltip
-          isOpen={props.isOpen}
-          isRegisterSuccess={props.isRegisterSuccess}
-          onClose={props.onClose}
+          isOpen={isOpen}
+          isRegisterSuccess={isRegisterSuccess}
+          onClose={onClose}
         />
       </section>
     </main>

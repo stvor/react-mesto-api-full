@@ -1,6 +1,9 @@
-function ImagePopup(props) {
+function ImagePopup({
+  card,
+  onClose
+}) {
   const imagePopupClassName = `popup popup_type_image-popup image-popup ${
-    props.card && "popup_open"
+    card && "popup_open"
   }`;
 
   return (
@@ -9,14 +12,14 @@ function ImagePopup(props) {
         <button
           className="popup__close image-popup__close"
           type="button"
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
         <img
           className="image-popup__place-image"
-          src={props.card ? props.card.link : ''}
-          alt={props.card ? props.card.name : ''}
+          src={card ? card.link : ''}
+          alt={card ? card.name : ''}
         />
-        <p className="image-popup__place-name">{props.card ? props.card.name : ''}</p>
+        <p className="image-popup__place-name">{card ? card.name : ''}</p>
       </div>
     </div>
   );

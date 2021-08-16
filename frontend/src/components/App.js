@@ -207,7 +207,6 @@ function App() {
         <div className="page__container">
           <Header
             email={email}
-            loggedIn={loggedIn}
             onSignOut={handleSignOut}
           />
           <Switch>

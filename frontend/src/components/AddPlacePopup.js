@@ -1,19 +1,23 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup(props) {
+function AddPlacePopup({
+  isOpen,
+  onClose,
+  onAddPlace
+}) {
   const placeNameRef = React.useRef();
   const placeLinkRef = React.useRef();
   
   React.useEffect(() => {
     placeNameRef.current.value = '';
     placeLinkRef.current.value = '';
-  }, [props.isOpen]);
+  }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    props.onAddPlace({
+    onAddPlace({
       name: placeNameRef.current.value,
       link: placeLinkRef.current.value,
     });
@@ -23,8 +27,8 @@ function AddPlacePopup(props) {
     <PopupWithForm 
       name="card-add"
       title="Новое место"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input
