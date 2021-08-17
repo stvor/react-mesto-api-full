@@ -2,12 +2,23 @@ function ImagePopup({
   card,
   onClose
 }) {
+  const isOpen = !!card;
+
   const imagePopupClassName = `popup popup_type_image-popup image-popup ${
     card && "popup_open"
   }`;
 
+  function handleOverlayClick(evt) {
+    if (evt.target === evt.currentTarget && isOpen) {
+      onClose();
+    }
+  }
+
   return (
-    <div className={imagePopupClassName}>
+    <div
+      className={imagePopupClassName}
+      onClick={handleOverlayClick}
+    >
       <div className="image-popup__container">
         <button
           className="popup__close image-popup__close"

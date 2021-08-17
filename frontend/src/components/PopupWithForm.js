@@ -10,8 +10,17 @@ function PopupWithForm({
     isOpen && "popup_open"
   }`;
 
+  function handleOverlayClick(evt) {
+    if (evt.target === evt.currentTarget && isOpen) {
+      onClose();
+    }
+  }
+
   return (
-    <div className={popupWithFormClassName}>
+    <div
+      className={popupWithFormClassName}
+      onClick={handleOverlayClick}
+    >
       <div className="popup__container">
         <button
           className="popup__close"
