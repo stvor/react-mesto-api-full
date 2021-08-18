@@ -1,0 +1,17 @@
+.popup__esc-label {
+  position: absolute;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  right: -34px;
+  top: 0px;
+}
+
+@media screen and (max-width: 535px) {
+  .popup__esc-label {
+    right: 4px;
+    top: -68px;
+  }
+}

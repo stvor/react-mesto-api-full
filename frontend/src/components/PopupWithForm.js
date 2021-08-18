@@ -1,3 +1,5 @@
+import React from 'react';
+
 function PopupWithForm({
   name,
   title,
@@ -16,6 +18,23 @@ function PopupWithForm({
     }
   }
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscPress = (evt) => {
+      if (evt.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscPress);
+    };
+
+  }, [isOpen, onClose]);
+
   return (
     <div
       className={popupWithFormClassName}
@@ -27,6 +46,7 @@ function PopupWithForm({
           type="button"
           onClick={onClose}
         ></button>
+        <span className="popup__esc-label image-popup__esc-label">Esc</span>
         <form
           className={`form form_type_${name}`}
           onSubmit={onSubmit}
