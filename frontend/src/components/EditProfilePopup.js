@@ -1,6 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useFormWithValidation } from '../hooks/useFormWithValidation';
 
 function EditProfilePopup({
   isOpen,
@@ -8,29 +9,18 @@ function EditProfilePopup({
   onUpdateUser
 }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   
   React.useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser, isOpen]);
-
-  function handleNameChange(evt) {
-    setName(evt.target.value);
-  }
-  
-  function handleDescriptionChange(evt) {
-    setDescription(evt.target.value);
-  }
+    if (currentUser) {
+      resetFrom(currentUser, {}, true);
+    }
+  }, [currentUser, resetFrom]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    onUpdateUser({
-      name,
-      about: description,
-    });
+    onUpdateUser(values);
   }
 
   return (
@@ -43,8 +33,8 @@ function EditProfilePopup({
     >
       <input
         className="form__input form__input_type_name"
-        value={name || ''}
-        onChange={handleNameChange}
+        value={values.name || ''}
+        onChange={handleChange}
         id="name-input"
         type="text"
         name="name"
@@ -53,20 +43,24 @@ function EditProfilePopup({
         maxLength="40"
         required
       />
-      <span className="name-input-error form__input-error"></span>
+      <span className="name-input-error form__input-error">
+        {errors.name || ""}
+      </span>
       <input
         className="form__input form__input_type_profession"
-        value={description || ''}
-        onChange={handleDescriptionChange}
+        value={values.about || ''}
+        onChange={handleChange}
         id="profession-input"
         type="text"
-        name="profession"
+        name="about"
         placeholder="Профессия"
         minLength="2"
         maxLength="200"
         required
       />
-      <span className="profession-input-error form__input-error"></span>
+      <span className="profession-input-error form__input-error">
+        {errors.about || ""}
+      </span>
     </PopupWithForm>
   );
 }
