@@ -12,10 +12,12 @@ function EditProfilePopup({
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   
   React.useEffect(() => {
+    if (!isOpen) return;
+
     if (currentUser) {
       resetFrom(currentUser, {}, true);
     }
-  }, [currentUser, resetFrom]);
+  }, [currentUser, resetFrom, isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -44,7 +46,7 @@ function EditProfilePopup({
         required
       />
       <span className="name-input-error form__input-error">
-        {errors.name || ""}
+        {errors.name || ''}
       </span>
       <input
         className="form__input form__input_type_profession"
@@ -59,7 +61,7 @@ function EditProfilePopup({
         required
       />
       <span className="profession-input-error form__input-error">
-        {errors.about || ""}
+        {errors.about || ''}
       </span>
     </PopupWithForm>
   );

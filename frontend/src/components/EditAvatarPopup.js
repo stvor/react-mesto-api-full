@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormWithValidation } from '../hooks/useFormWithValidation';
 import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup({
@@ -6,18 +7,18 @@ function EditAvatarPopup({
   onClose,
   onUpdateAvatar
 }) {
-  const avatarRef = React.useRef();
+  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
 
   React.useEffect(() => {
-    avatarRef.current.value = '';
-  }, [isOpen]);
+    if (!isOpen) return;
+
+    resetFrom({}, {}, false);
+  }, [resetFrom, isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    onUpdateAvatar({
-      avatar: avatarRef.current.value
-    });
+    onUpdateAvatar(values);
   }
 
   return (
@@ -30,14 +31,17 @@ function EditAvatarPopup({
     >
       <input
         className="form__input form__input_type_avatar-link"
-        ref={avatarRef}
+        value={values.avatar || ''}
+        onChange={handleChange}
         id="avatar-link-input"
         type="url"
-        name="avatar-link"
+        name="avatar"
         placeholder="Ссылка на аватар"
         required
       />
-      <span className="avatar-link-input-error form__input-error"></span>
+      <span className="avatar-link-input-error form__input-error">
+        {errors.avatar || ''}
+      </span>
     </PopupWithForm>
   );
 }
