@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormWithValidation } from '../hooks/useFormWithValidation';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({
@@ -6,21 +7,18 @@ function AddPlacePopup({
   onClose,
   onAddPlace
 }) {
-  const placeNameRef = React.useRef();
-  const placeLinkRef = React.useRef();
+  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   
   React.useEffect(() => {
-    placeNameRef.current.value = '';
-    placeLinkRef.current.value = '';
-  }, [isOpen]);
+    if (!isOpen) return;
+
+    resetFrom({}, {}, false);
+  }, [isOpen, resetFrom]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    onAddPlace({
-      name: placeNameRef.current.value,
-      link: placeLinkRef.current.value,
-    });
+    onAddPlace(values);
   }
 
   return (
@@ -33,26 +31,32 @@ function AddPlacePopup({
     >
       <input
         className="form__input form__input_type_place-name"
-        ref={placeNameRef}
+        value={values.name || ''}
+        onChange={handleChange}
         id="place-name-input"
         type="text"
-        name="place-name"
+        name="name"
         placeholder="Название"
         minLength="2"
         maxLength="30"
         required
       />
-      <span className="place-name-input-error form__input-error"></span>
+      <span className="place-name-input-error form__input-error">
+        {errors.name || ''}
+      </span>
       <input
         className="form__input form__input_type_place-link"
-        ref={placeLinkRef}
+        value={values.link || ''}
+        onChange={handleChange}
         id="place-link-input"
         type="url"
-        name="place-link"
+        name="link"
         placeholder="Ссылка на картинку"
         required
       />
-      <span className="place-link-input-error form__input-error"></span>        
+      <span className="place-link-input-error form__input-error">
+        {errors.link || ''}
+      </span>        
     </PopupWithForm>
 
   );

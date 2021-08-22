@@ -13,7 +13,7 @@ function EditAvatarPopup({
     if (!isOpen) return;
 
     resetFrom({}, {}, false);
-  }, [resetFrom, isOpen]);
+  }, [isOpen, resetFrom]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
