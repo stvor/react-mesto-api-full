@@ -28,6 +28,7 @@ function AddPlacePopup({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isDisabled={!isValid}
     >
       <input
         className="form__input form__input_type_place-name"

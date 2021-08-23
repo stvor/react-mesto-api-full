@@ -6,10 +6,15 @@ function PopupWithForm({
   onClose,
   isOpen,
   onSubmit,
-  children
+  children,
+  isDisabled = false
 }) {
   const popupWithFormClassName = `popup popup_type_${name} ${
     isOpen && "popup_open"
+  }`;
+
+  const submitButtonClassName = `form__submit ${
+    isDisabled && "form__submit_inactive"
   }`;
 
   function handleOverlayClick(evt) {
@@ -57,8 +62,9 @@ function PopupWithForm({
           <h2 className="form__title">{title}</h2>
             {children}
           <button
-            className="form__submit"
+            className={submitButtonClassName}
             type="submit"
+            disabled={isDisabled}
           >Сохранить</button>
         </form>
       </div>
