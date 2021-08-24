@@ -3,6 +3,7 @@ import React from 'react';
 function PopupWithForm({
   name,
   title,
+  buttonText = "Сохранить",
   onClose,
   isOpen,
   onSubmit,
@@ -65,7 +66,9 @@ function PopupWithForm({
             className={submitButtonClassName}
             type="submit"
             disabled={isDisabled}
-          >Сохранить</button>
+          >
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

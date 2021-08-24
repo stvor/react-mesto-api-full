@@ -5,7 +5,8 @@ import PopupWithForm from './PopupWithForm';
 function AddPlacePopup({
   isOpen,
   onClose,
-  onAddPlace
+  onAddPlace,
+  isSending
 }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   
@@ -25,10 +26,11 @@ function AddPlacePopup({
     <PopupWithForm 
       name="card-add"
       title="Новое место"
+      buttonText={isSending ? "Сохранение..." : "Сохранить"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      isDisabled={!isValid}
+      isDisabled={!isValid || isSending}
     >
       <input
         className="form__input form__input_type_place-name"

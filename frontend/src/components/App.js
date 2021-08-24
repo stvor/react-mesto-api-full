@@ -17,8 +17,10 @@ import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isUserSending, setIsUserSending] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isPlaceSending, setIsPlaceSending] = React.useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [isRegisterSuccess, setIsRegisterSuccess] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState();
@@ -65,6 +67,7 @@ function App() {
   function handleUpdateUser(userData) {
     const jwt = localStorage.getItem('jwt');
 
+    setIsUserSending(true);
     api.setUser(userData, jwt)
       .then((newUserData) => {
         setCurrentUser(newUserData);
@@ -72,6 +75,9 @@ function App() {
       })
       .catch(err => {
         console.log(err)
+      })
+      .finally(() => {
+        setIsUserSending(false);
       })
   }
 
@@ -138,6 +144,7 @@ function App() {
   function handleAddPlaceSubmit(cardData) {
     const jwt = localStorage.getItem('jwt');
 
+    setIsPlaceSending(true);
     api.addCard(cardData, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
@@ -145,6 +152,9 @@ function App() {
       })
       .catch(err => {
         console.log(err)
+      })
+      .finally(() => {
+        setIsPlaceSending(false);
       })
   }
 
@@ -244,6 +254,7 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isSending={isUserSending}
         />
 
         <EditAvatarPopup
@@ -256,6 +267,7 @@ function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isSending={isPlaceSending}
         />
 
         <PopupWithForm

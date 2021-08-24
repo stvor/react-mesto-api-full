@@ -6,7 +6,8 @@ import { useFormWithValidation } from '../hooks/useFormWithValidation';
 function EditProfilePopup({
   isOpen,
   onClose,
-  onUpdateUser
+  onUpdateUser,
+  isSending
 }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
@@ -29,10 +30,11 @@ function EditProfilePopup({
     <PopupWithForm
       name="profile-edit"
       title="Редактировать профиль"
+      buttonText={isSending ? "Сохранение..." : "Сохранить"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      isDisabled={!isValid}
+      isDisabled={!isValid || isSending}
     >
       <input
         className="form__input form__input_type_name"
