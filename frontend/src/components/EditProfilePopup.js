@@ -15,7 +15,7 @@ function EditProfilePopup({
     if (!isOpen) return;
 
     if (currentUser) {
-      resetFrom(currentUser, {}, true);
+      resetFrom(currentUser, {}, false);
     }
   }, [currentUser, resetFrom, isOpen]);
 
