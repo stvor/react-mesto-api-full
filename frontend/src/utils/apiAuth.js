@@ -1,3 +1,5 @@
+import { BASE_URL } from './../utils/constants';
+
 class ApiAuth {
   constructor({ url }) {
     this.url = url;
@@ -46,7 +48,7 @@ class ApiAuth {
 }
 
 const apiAuth = new ApiAuth({
-  url: 'https://api.belib.nomoredomains.monster',
+  url: `${BASE_URL}`
 });
 
 export default apiAuth;
