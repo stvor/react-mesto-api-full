@@ -1,3 +1,5 @@
+import { BASE_URL } from './../utils/constants';
+
 class Api {
   constructor({ url }) {
     this.url = url;
@@ -109,7 +111,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://api.belib.nomoredomains.monster',
+  url: `${BASE_URL}`
 });
 
 export default api;

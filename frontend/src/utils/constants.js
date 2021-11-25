@@ -7,4 +7,6 @@ const settings = {
   errorClass: 'form__input-error_active'
 };
 
-export { settings };
+const BASE_URL = `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3000'}`;
+
+export { settings, BASE_URL };
