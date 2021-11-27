@@ -30,7 +30,7 @@ function Register({
 
   return (
     <main className="content page__content">
-      <section className="content__register register">
+      {/* <section className="content__register register"> */}
         <form
           className="form form_type_register"
           onSubmit={handleSubmit}
@@ -71,7 +71,7 @@ function Register({
           isRegisterSuccess={isRegisterSuccess}
           onClose={onClose}
         />
-      </section>
+      {/* </section> */}
     </main>
   );
 }
