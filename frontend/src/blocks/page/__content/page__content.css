@@ -1,5 +1,15 @@
+.page__content {
+  margin: 36px 0 68px;
+}
+
 @media screen and (max-width: 918px) {
   .page__content {
     padding: 0 19px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .page__content {
+    margin: 42px 0 48px;
   }
 }

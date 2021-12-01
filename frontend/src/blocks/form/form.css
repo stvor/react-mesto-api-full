@@ -1,8 +1,5 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   min-height: 50vh;
-  width: 100%;
-  max-width: 358px;
 }
