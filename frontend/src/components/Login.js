@@ -23,7 +23,7 @@ function Login({ onLogin }) {
 
   return (
     <main className="content page__content">
-      {/* <section className="content__login login"> */}
+      <section className="content__login login">
         <form
           className="form form_type_login"
           onSubmit={handleSubmit}
@@ -55,7 +55,7 @@ function Login({ onLogin }) {
             type="submit"
           >Войти</button>
         </form>
-      {/* </section> */}
+      </section>
     </main>
   );
 }
